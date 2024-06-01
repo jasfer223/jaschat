@@ -3,9 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\ChatGroup;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -17,8 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'last_name',
+        'first_name',
+        'middle_name',
+        'extension_name',
         'email',
+        'email_verified_at',
         'password',
     ];
 
@@ -43,5 +48,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function chatGroups()
+    {
+        return $this->belongsToMany(ChatGroup::class);
     }
 }
