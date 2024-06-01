@@ -14,8 +14,13 @@ class ChatGroup extends Model
         'chat_group_name',
     ];
 
-    public function messages()
+    public function chats()
     {
         return $this->hasMany(Chat::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

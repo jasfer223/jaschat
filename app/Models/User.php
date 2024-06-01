@@ -50,6 +50,21 @@ class User extends Authenticatable
         ];
     }
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function chatSenders()
+    {
+        return $this->hasMany(Chat::class, 'sender_id');
+    }
+
+    public function chatReceivers()
+    {
+        return $this->hasMany(Chat::class, 'receiver_id');
+    }
+
     public function chatGroups()
     {
         return $this->belongsToMany(ChatGroup::class);

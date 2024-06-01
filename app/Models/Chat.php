@@ -21,12 +21,12 @@ class Chat extends Model
         return $this->belongsTo(ChatGroup::class);
     }
 
-    public function sender()
+    public function userSender()
     {
         return $this->belongsTo(User::class, 'sender_id');
     }
 
-    public function receiver()
+    public function userReceiver()
     {
         return $this->belongsTo(User::class, 'receiver_id');
     }
