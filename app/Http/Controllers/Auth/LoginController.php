@@ -10,20 +10,11 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return Inertia::render('Login');
+        return Inertia::render('Auth/Login');
     }
 
     public function login(Request $request)
     {
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if (auth()->attempt($validated)) {
-            return redirect()->route('home');
-        }
-
-        return redirect()->back()->with('error', 'Invalid credentials');
+        //
     }
 }

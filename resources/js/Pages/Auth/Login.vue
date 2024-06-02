@@ -1,5 +1,4 @@
 <script setup>
-    import { Link } from '@inertiajs/vue3'
     import {
         Card,
         CardContent,
@@ -13,7 +12,8 @@
     import '/resources/css/loader.css'
 </script>
 <template>
-    <div class="h-screen flex flex-col justify-center items-center bg-gray-200">
+    <Head title="Login" />
+    <div class="flex flex-col items-center justify-center h-screen bg-gray-200">
         <img class="h-[50px] w-[50px] mb-5" src="/public/jaschat-logo-black.png" alt="Jaschat Logo">
         <Card class="w-[420px]">
             <!-- <CardHeader>
@@ -22,19 +22,25 @@
             </CardHeader> -->
             <!-- <form action="" method="POST"> -->
                 <CardContent class="mt-7">
-                    <Input type="email" placeholder="Email" class="mb-4"/>
-                    <Input type="password" placeholder="Password"/>
+                    <div class="mb-4">
+                         <Input type="email" placeholder="Email" />
+                        <p class="hidden mt-1 text-sm text-red-600 ms-1">Email field is required</p>
+                    </div>
+                    <div>
+                        <Input type="password" placeholder="Password"/>
+                        <p class="hidden mt-1 text-sm text-red-600 ms-1">Passowrd field is required</p>
+                    </div>
                 </CardContent>
                 <CardFooter class="flex flex-col">
                     <Button type="submit" class="w-full">
-                        <div class="h-full w-6 me-3">
-                            <span class="loader w-full h-full"></span>
-                        </div>
+                        <!-- <div class="w-6 h-full me-3">
+                            <span class="w-full h-full loader"></span>
+                        </div> -->
                         Log In
                     </Button>
-                    <div class="flex justify-between mt-3 w-full px-2">
-                        <Link :href="route('show-registration-form')" class="hover:underline hover:text-black text-sm text-gray-500">Don't have an account?</Link>
-                        <Link href="#" class="hover:underline hover:text-black text-sm text-gray-500">Forgot Password?</Link>
+                    <div class="flex justify-between w-full px-2 mt-3">
+                        <Link :href="route('show-registration-form')" class="text-sm text-gray-500 hover:underline hover:text-black">Don't have an account?</Link>
+                        <Link href="#" class="text-sm text-gray-500 hover:underline hover:text-black">Forgot Password?</Link>
                     </div>
                 </CardFooter>
             <!-- </form> -->

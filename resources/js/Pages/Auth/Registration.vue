@@ -1,5 +1,4 @@
 <script setup>
-    import { Link } from '@inertiajs/vue3'
     import {
         Card,
         CardContent,
@@ -13,7 +12,8 @@
 
 </script>
 <template>
-    <div class="h-screen flex flex-col justify-center items-center bg-gray-200">
+    <Head title="Registration" />
+    <div class="flex flex-col items-center justify-center h-screen bg-gray-200">
         <img class="h-[50px] w-[50px] mb-5" src="/public/jaschat-logo-black.png" alt="Jaschat Logo">
         <Card class="w-[420px]">
             <!-- <CardHeader>
@@ -32,8 +32,8 @@
                 </CardContent>
                 <CardFooter class="flex flex-col">
                     <Button type="submit" class="w-full">Register</Button>
-                    <div class="flex justify-start mt-3 w-full px-2">
-                        <Link :href="route('show-login-form')" class="hover:underline hover:text-black text-sm text-gray-500">Already have an account?</Link>
+                    <div class="flex justify-start w-full px-2 mt-3">
+                        <Link :href="route('show-login-form')" class="text-sm text-gray-500 hover:underline hover:text-black">Already have an account?</Link>
                     </div>
                 </CardFooter>
             </form>

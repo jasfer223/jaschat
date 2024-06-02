@@ -10,7 +10,7 @@ class RegistrationController extends Controller
 {
     public function showRegistrationForm()
     {
-        return Inertia::render('Registration');
+        return Inertia::render('Auth/Registration');
     }
 
     public function registration(Request $request)
