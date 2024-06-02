@@ -10,34 +10,33 @@
     } from '@/shadcn/ui/card'
     import { Input } from '@/shadcn/ui/input'
     import { Button } from '@/shadcn/ui/button'
-    import '/resources/css/loader.css'
+
 </script>
 <template>
     <div class="h-screen flex flex-col justify-center items-center bg-gray-200">
         <img class="h-[50px] w-[50px] mb-5" src="/public/jaschat-logo-black.png" alt="Jaschat Logo">
         <Card class="w-[420px]">
             <!-- <CardHeader>
-              <CardTitle class="text-center">Jaschat Login</CardTitle>
+              <CardTitle class="text-center">Jaschat Registration</CardTitle>
               <CardDescription>Enter your account information to log in</CardDescription>
             </CardHeader> -->
-            <!-- <form action="" method="POST"> -->
+            <form action="" method="POST">
                 <CardContent class="mt-7">
+                    <Input type="text" placeholder="First Name" class="mb-4"/>
+                    <Input type="text" placeholder="Middle Name (Optional)" class="mb-4"/>
+                    <Input type="text" placeholder="Last Name" class="mb-4"/>
+                    <Input type="text" placeholder="Extension Name (Optional)" class="mb-4"/>
                     <Input type="email" placeholder="Email" class="mb-4"/>
-                    <Input type="password" placeholder="Password"/>
+                    <Input type="password" placeholder="Password" class="mb-4"/>
+                    <Input type="password" placeholder="Confirm Password"/>
                 </CardContent>
                 <CardFooter class="flex flex-col">
-                    <Button type="submit" class="w-full">
-                        <div class="h-full w-6 me-3">
-                            <span class="loader w-full h-full"></span>
-                        </div>
-                        Log In
-                    </Button>
-                    <div class="flex justify-between mt-3 w-full px-2">
-                        <Link :href="route('show-registration-form')" class="hover:underline hover:text-black text-sm text-gray-500">Don't have an account?</Link>
-                        <Link href="#" class="hover:underline hover:text-black text-sm text-gray-500">Forgot Password?</Link>
+                    <Button type="submit" class="w-full">Register</Button>
+                    <div class="flex justify-start mt-3 w-full px-2">
+                        <Link :href="route('show-login-form')" class="hover:underline hover:text-black text-sm text-gray-500">Already have an account?</Link>
                     </div>
                 </CardFooter>
-            <!-- </form> -->
+            </form>
           </Card>
     </div>
 </template>
