@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@/shadcn": ["./resources/js/shadcn"],
+            "@/lib/utils": ["./resources/js/lib/utils"],
+
+        }
+    }
+}
