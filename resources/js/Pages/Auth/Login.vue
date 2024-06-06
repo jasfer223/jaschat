@@ -19,7 +19,9 @@
     });
 
     const submit = () => {
-        form.post(route('login'));
+        form.post(route('login'), {
+            onError: () => form.reset("password"),
+        });
     };
 
 </script>

@@ -12,8 +12,9 @@
 </script>
 
 <template>
-    <div class="flex items-center justify-center h-screen">
-        <h1 class="font-bold text-center">Hello World!</h1>
+    <Head title="Home" />
+    <div class="flex flex-col items-center justify-center h-screen">
+        <h1 class="font-bold text-center">Welcome to Jaschat {{ $page.props.auth.user.first_name }} {{ $page.props.auth.user.last_name }}</h1>
         <form @submit.prevent="submit">
             <Button type="submit" class="w-full" :disabled="form.processing">
                 <div v-if="form.processing" class="w-6 h-full me-3">
