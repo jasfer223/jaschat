@@ -15,6 +15,14 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        //
+        sleep(1);
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (auth()->attempt($validated)) {
+            return to_route('home');
+        }
     }
 }

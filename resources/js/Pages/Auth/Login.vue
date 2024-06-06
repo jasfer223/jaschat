@@ -6,36 +6,44 @@
         CardFooter,
         CardHeader,
         CardTitle,
-    } from '@/shadcn/ui/card'
-    import { Input } from '@/shadcn/ui/input'
-    import { Button } from '@/shadcn/ui/button'
-    import '/resources/css/loader.css'
+    } from '@/shadcn/ui/card';
+    import { Input } from '@/shadcn/ui/input';
+    import { Button } from '@/shadcn/ui/button';
+    import '/resources/css/loader.css';
+    // import { reactive } from 'vue';
+    import { useForm } from '@inertiajs/vue3';
+
+    const form = useForm({
+        email: null,
+        password: null,
+    });
+
+    const submit = () => {
+        form.post(route('login'));
+    };
+
 </script>
 <template>
     <Head title="Login" />
     <div class="flex flex-col items-center justify-center h-screen bg-gray-200">
         <img class="h-[50px] w-[50px] mb-5" src="/public/jaschat-logo-black.png" alt="Jaschat Logo">
         <Card class="w-[420px]">
-            <!-- <CardHeader>
-              <CardTitle class="text-center">Jaschat Login</CardTitle>
-              <CardDescription>Enter your account information to log in</CardDescription>
-            </CardHeader> -->
-            <!-- <form action="" method="POST"> -->
+            <form @submit.prevent="submit">
                 <CardContent class="mt-7">
                     <div class="mb-4">
-                         <Input type="email" placeholder="Email" />
-                        <p class="hidden mt-1 text-sm text-red-600 ms-1">Email field is required</p>
+                        <Input type="email" placeholder="Email" v-model="form.email"  :class="{ 'border-red-500': form.errors.email }" />
+                        <small v-if="form.errors.email" class="text-sm text-red-600 ms-1">{{ form.errors.email }}</small>
                     </div>
                     <div>
-                        <Input type="password" placeholder="Password"/>
-                        <p class="hidden mt-1 text-sm text-red-600 ms-1">Passowrd field is required</p>
+                        <Input type="password" placeholder="Password" v-model="form.password"  :class="{ 'border-red-500': form.errors.password }"/>
+                        <small v-if="form.errors.password" class="text-sm text-red-600 ms-1">{{ form.errors.password }}</small>
                     </div>
                 </CardContent>
                 <CardFooter class="flex flex-col">
-                    <Button type="submit" class="w-full">
-                        <!-- <div class="w-6 h-full me-3">
+                    <Button type="submit" class="w-full" :disabled="form.processing">
+                        <div v-if="form.processing" class="w-6 h-full me-3">
                             <span class="w-full h-full loader"></span>
-                        </div> -->
+                        </div>
                         Log In
                     </Button>
                     <div class="flex justify-between w-full px-2 mt-3">
@@ -43,7 +51,7 @@
                         <Link href="#" class="text-sm text-gray-500 hover:underline hover:text-black">Forgot Password?</Link>
                     </div>
                 </CardFooter>
-            <!-- </form> -->
+            </form>
           </Card>
     </div>
 </template>

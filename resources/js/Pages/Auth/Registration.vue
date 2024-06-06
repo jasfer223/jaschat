@@ -6,9 +6,25 @@
         CardFooter,
         CardHeader,
         CardTitle,
-    } from '@/shadcn/ui/card'
-    import { Input } from '@/shadcn/ui/input'
-    import { Button } from '@/shadcn/ui/button'
+    } from '@/shadcn/ui/card';
+    import { Input } from '@/shadcn/ui/input';
+    import { Button } from '@/shadcn/ui/button';
+    import '/resources/css/loader.css';
+    import { useForm } from '@inertiajs/vue3';
+
+    const form = useForm({
+        last_name: null,
+        first_name: null,
+        middle_name: null,
+        extension_name: null,
+        email: null,
+        password: null,
+        password_confirmation: null,
+    });
+
+    const submit = () => {
+        form.post(route('registration'));
+    };
 
 </script>
 <template>
@@ -16,22 +32,45 @@
     <div class="flex flex-col items-center justify-center h-screen bg-gray-200">
         <img class="h-[50px] w-[50px] mb-5" src="/public/jaschat-logo-black.png" alt="Jaschat Logo">
         <Card class="w-[420px]">
-            <!-- <CardHeader>
-              <CardTitle class="text-center">Jaschat Registration</CardTitle>
-              <CardDescription>Enter your account information to log in</CardDescription>
-            </CardHeader> -->
-            <form action="" method="POST">
+            <form @submit.prevent="submit">
                 <CardContent class="mt-7">
-                    <Input type="text" placeholder="First Name" class="mb-4"/>
-                    <Input type="text" placeholder="Middle Name (Optional)" class="mb-4"/>
-                    <Input type="text" placeholder="Last Name" class="mb-4"/>
-                    <Input type="text" placeholder="Extension Name (Optional)" class="mb-4"/>
-                    <Input type="email" placeholder="Email" class="mb-4"/>
-                    <Input type="password" placeholder="Password" class="mb-4"/>
-                    <Input type="password" placeholder="Confirm Password"/>
+                    <div class="mb-4">
+                        <Input type="text" placeholder="First Name" v-model="form.first_name"  :class="{ 'border-red-500': form.errors.first_name }"/>
+                        <small v-if="form.errors.first_name" class="text-sm text-red-600 ms-1">{{ form.errors.first_name }}</small>
+                    </div>
+                    <div  class="mb-4" >
+                        <Input type="text" placeholder="Middle Name (Optional)" v-model="form.middle_name"  :class="{ 'border-red-500': form.errors.middle_name }"/>
+                        <small v-if="form.errors.middle_name" class="text-sm text-red-600 ms-1">{{ form.errors.middle_name }}</small>
+                    </div>
+                    <div class="mb-4">
+                        <Input type="text" placeholder="Last Name" v-model="form.last_name"  :class="{ 'border-red-500': form.errors.last_name }"/>
+                        <small v-if="form.errors.last_name" class="text-sm text-red-600 ms-1">{{ form.errors.last_name }}</small>
+                    </div>
+                    <div class="mb-4">
+                        <Input type="text" placeholder="Extension Name (Optional)" v-model="form.extension_name"  :class="{ 'border-red-500': form.errors.extension_name }"/>
+                        <small v-if="form.errors.extension_name" class="text-sm text-red-600 ms-1">{{ form.errors.extension_name }}</small>
+                    </div>
+                    <div class="mb-4">
+                        <Input type="email" placeholder="Email" v-model="form.email"  :class="{ 'border-red-500': form.errors.email }" />
+                        <small v-if="form.errors.email" class="text-sm text-red-600 ms-1">{{ form.errors.email }}</small>
+                    </div>
+                    <div class="mb-4">
+                        <Input type="password" placeholder="Password" v-model="form.password"  :class="{ 'border-red-500': form.errors.password }"/>
+                        <small v-if="form.errors.password" class="text-sm text-red-600 ms-1">{{ form.errors.password }}</small>
+                    </div>
+                    <div class="mb-4">
+                        <Input type="password" placeholder="Confirm Password" v-model="form.password_confirmation"  :class="{ 'border-red-500': form.errors.password_confirmation }"/>
+                        <small v-if="form.errors.password_confirmation" class="text-sm text-red-600 ms-1">{{ form.errors.password_confirmation }}</small>
+                    </div>
+
                 </CardContent>
                 <CardFooter class="flex flex-col">
-                    <Button type="submit" class="w-full">Register</Button>
+                    <Button type="submit" class="w-full" :disabled="form.processing">
+                        <div v-if="form.processing" class="w-6 h-full me-3">
+                            <span class="w-full h-full loader"></span>
+                        </div>
+                        Register
+                    </Button>
                     <div class="flex justify-start w-full px-2 mt-3">
                         <Link :href="route('show-login-form')" class="text-sm text-gray-500 hover:underline hover:text-black">Already have an account?</Link>
                     </div>
