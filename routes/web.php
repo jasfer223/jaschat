@@ -1,8 +1,7 @@
 <?php
 
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegistrationController;
@@ -33,4 +32,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::inertia('home', 'User/Home')
         ->name('home');
+
+    // TRY PROPS
+    // Route::get('home', [HomeController::class, 'index'])
+    //     ->name('home');
 });
